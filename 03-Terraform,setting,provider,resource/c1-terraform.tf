@@ -1,7 +1,7 @@
 ##########################################################################
 # Terraform setting block
 terraform {
-  required_version = "~> 0.14.8" # it will allow only form 14.8 not below version.
+  required_version = "~>= 0.14.0" # it will allow only form 14.8 not below version.
   required_providers {
    aws ={                        # local name of the provider its prefre to use the offical give name from provider document.
     source  = "hashicorp/aws"
