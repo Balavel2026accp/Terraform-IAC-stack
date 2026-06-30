@@ -7,4 +7,4 @@ resource "aws_instance" "Lab1" {
     tags = {
       Name = "lab1-server"
     }
-}
+}#  
