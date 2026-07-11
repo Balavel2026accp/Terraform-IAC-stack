@@ -6,9 +6,9 @@ from pydantic import BaseModel
 import json
 from fastapi.responses import HTMLResponse
 ## file and class import statements
-from services.CPU import CPU_Checks
+from services.CPU import CPU_checks
 
-processors = CPU_Checks()
+processors = CPU_checks()
 
 Application = FastAPI()
 
