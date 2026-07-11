@@ -84,233 +84,61 @@ class CPU_checks:
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPU Monitoring Dashboard</title>
+    <title>CPU Information</title>
     <style>
-        :root {
-            color-scheme: dark;
-            --bg: #0b1120;
-            --panel: rgba(15, 27, 52, 0.96);
-            --accent: #4dd0e1;
-            --accent-soft: #1b93a5;
-            --text: #ebf4ff;
-            --muted: #8fa4c0;
-            --border: rgba(255,255,255,0.08);
-            --shadow: 0 24px 80px rgba(0,0,0,0.18);
-            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: radial-gradient(circle at top left, rgba(77, 208, 225, 0.18), transparent 28%),
-                        linear-gradient(180deg, #07101f 0%, #070d18 45%, #08101e 100%);
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        .page-shell {
-            width: min(1180px, calc(100% - 32px));
-            margin: 0 auto;
-            padding: 36px 0 48px;
-        }
-
-        .hero {
-            display: grid;
-            gap: 18px;
-            margin-bottom: 30px;
-        }
-
-        .hero-title {
-            font-size: clamp(2rem, 3vw, 3.1rem);
-            margin: 0;
-            letter-spacing: -0.04em;
-        }
-
-        .hero-copy {
-            max-width: 720px;
-            color: var(--muted);
-            font-size: 1rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            gap: 16px;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        }
-
-        .stat-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 26px;
-            padding: 22px 24px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(18px);
-        }
-
-        .stat-card strong {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .stat-card span {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .table-panel {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 0.95rem;
-            min-width: 620px;
-        }
-
-        thead {
-            background: rgba(13, 23, 44, 0.94);
-        }
-
-        th, td {
-            padding: 18px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        th {
-            color: var(--muted);
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-        }
-
-        tbody tr {
-            transition: transform 160ms ease, background 160ms ease;
-        }
-
-        tbody tr:hover {
-            background: rgba(77, 208, 225, 0.08);
-            transform: translateX(2px);
-        }
-
-        tbody td {
-            color: var(--text);
-        }
-
-        .footer-note {
-            margin-top: 20px;
-            color: var(--muted);
-            font-size: 0.88rem;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; background: #fff; color: #111; }
+        h1 { margin-top: 0; font-size: 1.8rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { border: 1px solid #ccc; padding: 8px 10px; }
+        th { background: #f0f0f0; text-align: left; }
+        p { max-width: 720px; line-height: 1.5; }
     </style>
 </head>
 <body>
-    <div class="page-shell">
-        <section class="hero">
-            <div>
-                <h1 class="hero-title">CPU Monitoring Dashboard</h1>
-                <p class="hero-copy">A polished performance-focused dashboard built for clarity, speed, and visual impact. Streamlined rendering uses semantic structure and lightweight styling for an ultra-fast browser experience.</p>
-            </div>
-        </section>
-
-        <section class="stats-grid">
+    <h1>CPU Information</h1>
 """
 
         if cpu_data:
-            cpu = cpu_data[0]
-            html += f"""
-            <article class="stat-card">
-                <strong>Processor</strong>
-                <span>{cpu.get('processor', 'N/A')}</span>
-            </article>
-            <article class="stat-card">
-                <strong>Vendor</strong>
-                <span>{cpu.get('vendor_id', 'N/A')}</span>
-            </article>
-            <article class="stat-card">
-                <strong>Model Name</strong>
-                <span>{cpu.get('model name', cpu.get('model', 'N/A'))}</span>
-            </article>
-            <article class="stat-card">
-                <strong>Physical Cores</strong>
-                <span>{cpu.get('cpu cores', cpu.get('cores', 'N/A'))}</span>
-            </article>
-            <article class="stat-card">
-                <strong>Threads</strong>
-                <span>{cpu.get('siblings', 'N/A')}</span>
-            </article>
-            <article class="stat-card">
-                <strong>Family</strong>
-                <span>{cpu.get('cpu family', 'N/A')}</span>
-            </article>
+            html += """
+    <p>The table below shows detected CPU entries from the system.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Processor</th>
+                <th>Vendor ID</th>
+                <th>Model</th>
+                <th>CPU Family</th>
+                <th>Siblings</th>
+                <th>CPU Cores</th>
+            </tr>
+        </thead>
+        <tbody>
+"""
+
+            for cpu in cpu_data:
+                html += f"""
+            <tr>
+                <td>{cpu.get('processor', '')}</td>
+                <td>{cpu.get('vendor_id', '')}</td>
+                <td>{cpu.get('model', cpu.get('model name', ''))}</td>
+                <td>{cpu.get('cpu family', '')}</td>
+                <td>{cpu.get('siblings', '')}</td>
+                <td>{cpu.get('cpu cores', '')}</td>
+            </tr>
+"""
+
+            html += """
+        </tbody>
+    </table>
 """
         else:
             html += """
-            <article class="stat-card">
-                <strong>CPU Status</strong>
-                <span>No CPU data available</span>
-            </article>
+    <p>No CPU data available.</p>
 """
 
         html += """
-        </section>
-
-        <section class="table-panel">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Processor</th>
-                        <th>Vendor ID</th>
-                        <th>Model</th>
-                        <th>CPU Family</th>
-                        <th>Siblings</th>
-                        <th>CPU Cores</th>
-                    </tr>
-                </thead>
-                <tbody>
-"""
-
-        for cpu in cpu_data:
-            html += f"""
-                    <tr>
-                        <td>{cpu.get('processor', '')}</td>
-                        <td>{cpu.get('vendor_id', '')}</td>
-                        <td>{cpu.get('model', cpu.get('model name', ''))}</td>
-                        <td>{cpu.get('cpu family', '')}</td>
-                        <td>{cpu.get('siblings', '')}</td>
-                        <td>{cpu.get('cpu cores', '')}</td>
-                    </tr>
-"""
-
-        html += """
-                </tbody>
-            </table>
-        </section>
-
-        <p class="footer-note">Rendered using lightweight CSS and streamlined HTML for responsive, GPU-friendly presentation across modern browsers.</p>
-    </div>
 </body>
 </html>
 """
 
         return html
-   
-              
-    
