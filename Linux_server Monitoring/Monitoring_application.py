@@ -4,6 +4,7 @@ import uvicorn
 import requests
 from pydantic import BaseModel
 import json
+from fastapi.responses import HTMLResponse
 ## file and class import statements
 
 from services.CPU import CPUChecks
@@ -11,6 +12,6 @@ processors = CPUChecks()
 
 Application = FastAPI()
 
-@Application.get("/CPU")
+@Application.get("/CPU", response_class=HTMLResponse)
 def send_html():
-   print(processors.render_html)
+   return processors.render_html()
